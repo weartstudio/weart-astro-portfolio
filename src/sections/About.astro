@@ -1,0 +1,92 @@
+---
+import ArrowRight from 'astro-heroicons/outline/ArrowRight.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+
+const stats = [
+	{ value: '120+', label: 'átadott weboldal' },
+	{ value: '90+', label: 'elégedett ügyfél' },
+	{ value: '10+', label: 'év tapasztalat' },
+	{ value: '2', label: 'csapattag' },
+	{ value: '1', label: 'sikertelen projekt' },
+];
+---
+
+<section id="rolunk" aria-labelledby="about-cim" class="my-16 sm:my-20 lg:my-24">
+	<div class="container mx-auto  px-4 sm:px-6 lg:px-8 grid lg:grid-cols-[minmax(0,420px)_1fr] items-center min-h-0 ">
+
+		<!-- Bal: teal háttér, két személykártya -->
+		<div class="relative flex items-center justify-center  aspect-square max-h-[420px] w-full">
+			<!-- Háttérkép (about-bg.png) -->
+			<img
+				src="/about-bg.png"
+				alt=""
+				aria-hidden="true"
+				class="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+			/>
+
+			<!-- Két személykártya egymásra helyezve -->
+
+				<!-- Balázs – bal felső -->
+				<div class="absolute -top-[10%] -left-[10%] flex items-center gap-3 ">
+					<img src="/balazs.png" alt="Egyed Balázs" class="w-full object-cover max-w-[270px]" />
+					<div class="pb-2 shrink-0">
+						<p class="text-2xl font-normal text-neutral-700 leading-tight">Egyed Balázs</p>
+						<p class="text-lg text-neutral-700">Web developer</p>
+					</div>
+				</div>
+
+				<!-- Fanni – jobb alsó -->
+				<div class="absolute -bottom-[10%] -right-[10%] flex items-center gap-3">
+					<div class="pb-2 shrink-0">
+						<p class="text-2xl font-normal text-neutral-700 leading-tight">Ágoston Fanni</p>
+						<p class="text-lg text-neutral-700">Projektmanager</p>
+					</div>
+					<img src="/fanni.png" alt="Ágoston Fanni" class="w-full object-cover max-w-[270px]" />
+				</div>
+
+		</div>
+
+		<!-- Jobb: szöveg, statisztikák -->
+		<div class="flex flex-col justify-center px-6 sm:px-10 lg:px-14 py-14 sm:py-16 lg:py-20">
+
+			<SectionTitle
+				label="Rólunk"
+				title="Kik vagyunk?"
+			/>
+
+			<!-- Szöveg – két oszlop, link a második alján -->
+			<div class="mt-6 grid sm:grid-cols-2 gap-4 sm:gap-8 items-start">
+				<p class="mt-4 text-base text-neutral-600 leading-relaxed">
+					Etiam vel odio at enim varius tincidunt eu sit amet sem. Integer vehicula molestie ligula ut vestibulum. Proin ut placerat nulla. Duis elementum, quam ut semper congue, leo justo commodo augue, id lacinia sem purus eget diam.
+				</p>
+				<div class="flex flex-col gap-4 sm:gap-5">
+					<p class="mt-4 text-base text-neutral-600 leading-relaxed">
+						Etiam vel odio at enim varius tincidunt eu sit amet sem. Integer vehicula molestie ligula ut vestibulum. Proin ut placerat nulla. Duis elementum, quam ut semper congue.
+					</p>
+					<a
+						href="#munkak"
+						class="inline-flex items-center gap-1.5 text-sm sm:text-base text-neutral-900 border-b-2 border-teal-500 pb-0.5 hover:border-teal-600 transition-colors self-start no-underline group"
+					>
+						Még többet szeretnék tudni
+						<ArrowRight class="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+					</a>
+				</div>
+			</div>
+
+			<!-- Elválasztó -->
+			<hr class="mt-8 sm:mt-10 border-neutral-200" />
+
+			<!-- Statisztikák -->
+			<dl class="mt-6 sm:mt-8 grid grid-cols-3 sm:grid-cols-5 gap-y-6 gap-x-4">
+				{stats.map((stat) => (
+					<div class="flex flex-col">
+						<dt class="text-2xl sm:text-3xl font-bold text-neutral-900 leading-none">{stat.value}</dt>
+						<dd class="mt-1.5 text-xs sm:text-[0.8rem] text-neutral-500 leading-snug">{stat.label}</dd>
+					</div>
+				))}
+			</dl>
+
+		</div>
+	</div>
+</section>
+

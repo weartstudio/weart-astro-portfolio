@@ -1,0 +1,23 @@
+---
+import Bars3 from 'astro-heroicons/outline/Bars3.astro';
+---
+
+<header class="fixed top-0 left-0 right-0 z-50">
+	<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="flex items-center justify-between h-20 sm:h-24">
+			<!-- Logo: fekete kör, menügombbal azonos méret, weart kép nagyobb -->
+			<a href="/" class="h-20 px-10 shrink-0 flex items-center justify-center bg-black rounded-full hover:opacity-90 transition-opacity duration-1000">
+				<img src="/weart-logo.png" alt="weart" class="h-14   pb-2 w-auto max-w-none object-contain" width="120" height="48" />
+			</a>
+
+			<!-- Menügomb: nagy kör -->
+			<button
+				type="button"
+				class="w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-full bg-black text-white inline-flex items-center justify-center hover:opacity-90 transition-opacity duration-1000 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+				aria-label="Menü megnyitása"
+			>
+				<Bars3 class="w-8 h-8 sm:w-10 sm:h-10" />
+			</button>
+		</div>
+	</div>
+</header>

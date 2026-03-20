@@ -1,0 +1,209 @@
+---
+import ArrowLeft from 'astro-heroicons/outline/ArrowLeft.astro';
+import ArrowRight from 'astro-heroicons/outline/ArrowRight.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+
+const testimonials = [
+	{
+		quote:
+			'Folyamatosan építjük a honlapot. Ha kérdésre választ vagy kérésemre megoldást kérek, azt megkapom. Az elképzeléseim kezdenek megjelenni és ezt Balázsnak köszönöm. Lényegre törő; egyszerű, de mégis különleges megjelenítés.',
+		name: 'Lázár László',
+		title: 'Tulajdonos, szerszamot.eu',
+		initials: 'sz.eu',
+	},
+	{
+		quote:
+			'Professzionális megoldás, gyors kommunikáció. A weart csapat mindig segítőkész volt, és a végeredmény tökéletesen megfelel az elvárásainknak.',
+		name: 'Kovács Anna',
+		title: 'Marketing vezető, Példa Kft.',
+		initials: 'KA',
+	},
+	{
+		quote:
+			'Az új weboldalunk jelentősen növelte a megkereséseinket. Tiszta, átlátható design és zökkenőmentes felhasználói élmény.',
+		name: 'Nagy Péter',
+		title: 'Ügyvezető, TechSolutions Zrt.',
+		initials: 'NP',
+	},
+	{
+		quote:
+			'Rendkívül elégedettek vagyunk a együttműködéssel. Kreatív ötletek, pontos határidők és kiváló minőség.',
+		name: 'Szabó Eszter',
+		title: 'Alapító, Design Studio',
+		initials: 'SE',
+	},
+	{
+		quote:
+			'A weart nem csak kódot szállít, hanem stratégiai partnert találtunk. Közösen építjük a márka digitális jelenlétét.',
+		name: 'Tóth Gergő',
+		title: 'CEO, Startup Hungary',
+		initials: 'TG',
+	},
+	{
+		quote:
+			'Végre egy fejlesztő, aki érti az üzleti céljainkat. Az eredmény minden várakozásunkat felülmúlta.',
+		name: 'Varga Márta',
+		title: 'Ügyfélkapcsolat, GreenLife',
+		initials: 'VM',
+	},
+];
+
+// Csoportosítás kártyapáronként (egy „slide” = 2 kártya)
+const slides = [];
+for (let i = 0; i < testimonials.length; i += 2) {
+	slides.push(testimonials.slice(i, i + 2));
+}
+---
+
+<section id="velemenyek" class="my-16 sm:my-20 lg:my-24" aria-labelledby="velemenyek-cim">
+	<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+		<SectionTitle
+			label="Vélemények"
+			title="Akik már megbíztak bennünk"
+			description="Quisque sit amet laoreet ante. Nulla porttitor nisl a vestibulum mollis. Sed malesuada, lacus vitae lobortis convallis."
+			class="mb-10 sm:mb-12"
+		/>
+
+		<!-- Carousel: viewport padding nélkül, így a slide pontosan egy ablaknyi, nincs belógás -->
+		<div class="relative">
+			<div id="testimonials-viewport" class="overflow-hidden rounded-xl w-full">
+				<div id="testimonials-track" class="flex transition-transform duration-500 ease-out" style="transform: translateX(0)">
+					{slides.map((pair) => (
+						<div
+							class="testimonial-slide shrink-0 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 px-2 py-4"
+							aria-hidden="true"
+							style="width: 0"
+						>
+							{pair.map((t) => (
+								<article class="bg-white rounded-2xl shadow-lg shadow-neutral-200/80 border border-neutral-100 p-6 sm:p-8 flex flex-col">
+									<blockquote class="flex-1 text-neutral-800 leading-relaxed text-base sm:text-lg">
+										&quot;{t.quote}&quot;
+									</blockquote>
+									<footer class="mt-6 flex items-center gap-4">
+										<div
+											class="w-12 h-12 rounded-full bg-neutral-900 text-white flex items-center justify-center text-sm font-semibold shrink-0"
+											aria-hidden="true"
+										>
+											{t.initials}
+										</div>
+										<div>
+											<p class="font-semibold text-neutral-900">{t.name}</p>
+											<p class="text-sm text-neutral-500">{t.title}</p>
+										</div>
+									</footer>
+								</article>
+							))}
+						</div>
+					))}
+				</div>
+			</div>
+
+			<!-- Navigáció: nyilak + pontok -->
+			<div class="flex items-center justify-center gap-4 mt-8">
+				<button
+					type="button"
+					id="testimonials-prev"
+					class="w-12 h-12 rounded-full bg-teal-500 text-white flex items-center justify-center hover:bg-teal-600 transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none"
+					aria-label="Előző vélemények"
+				>
+					<ArrowLeft class="w-5 h-5" />
+				</button>
+				<div id="testimonials-dots" class="flex items-center gap-2" role="tablist" aria-label="Vélemény lapok">
+					{slides.map((_, i) => (
+						<button
+							type="button"
+							role="tab"
+							aria-selected={i === 0}
+							aria-label={`Vélemény lap ${i + 1}`}
+							data-index={i}
+							class="testimonial-dot w-2.5 h-2.5 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+						/>
+					))}
+				</div>
+				<button
+					type="button"
+					id="testimonials-next"
+					class="w-12 h-12 rounded-full bg-teal-500 text-white flex items-center justify-center hover:bg-teal-600 transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none"
+					aria-label="Következő vélemények"
+				>
+					<ArrowRight class="w-5 h-5" />
+				</button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	// @ts-nocheck — inline carousel, böngészőben fut
+	(function () {
+		const track = document.getElementById('testimonials-track');
+		const viewport = document.getElementById('testimonials-viewport');
+		const prevBtn = document.getElementById('testimonials-prev');
+		const nextBtn = document.getElementById('testimonials-next');
+		const dotsContainer = document.getElementById('testimonials-dots');
+		if (!track || !viewport || !prevBtn || !nextBtn || !dotsContainer) return;
+
+		const slideEls = track.querySelectorAll('.testimonial-slide');
+		const total = slideEls.length;
+		let current = 0;
+
+		function getSlideWidth() {
+			return viewport.offsetWidth;
+		}
+
+		function setSlideWidths() {
+			const w = getSlideWidth();
+			slideEls.forEach((el) => {
+				el.style.width = w + 'px';
+			});
+		}
+
+		function updateCarousel() {
+			setSlideWidths();
+			const w = getSlideWidth();
+			track.style.transform = `translateX(-${current * w}px)`;
+			prevBtn.toggleAttribute('disabled', current === 0);
+			nextBtn.toggleAttribute('disabled', current === total - 1);
+			const dots = dotsContainer.querySelectorAll('.testimonial-dot');
+			dots.forEach((dot, i) => {
+				dot.setAttribute('aria-selected', i === current ? 'true' : 'false');
+				dot.classList.toggle('bg-teal-500', i === current);
+				dot.classList.toggle('bg-neutral-300', i !== current);
+			});
+		}
+
+		function goTo(index) {
+			current = Math.max(0, Math.min(index, total - 1));
+			updateCarousel();
+		}
+
+		prevBtn.addEventListener('click', () => goTo(current - 1));
+		nextBtn.addEventListener('click', () => goTo(current + 1));
+		dotsContainer.addEventListener('click', (e) => {
+			const target = e.target instanceof Element ? e.target : null;
+			const btn = target?.closest?.('[data-index]');
+			if (btn) goTo(parseInt(btn.getAttribute('data-index') ?? '0', 10));
+		});
+
+		// Resize: slide szélesség újraszámolása
+		let resizeTimeout;
+		window.addEventListener('resize', () => {
+			clearTimeout(resizeTimeout);
+			resizeTimeout = setTimeout(updateCarousel, 100);
+		});
+
+		// Kezdeti stílus a pontoknak és slide szélesség (layout után)
+		requestAnimationFrame(() => {
+			updateCarousel();
+		});
+	})();
+</script>
+
+<style>
+	.testimonial-dot[aria-selected='true'] {
+		background-color: rgb(20 184 166); /* teal-500 */
+	}
+	.testimonial-dot[aria-selected='false'] {
+		background-color: rgb(212 212 212); /* neutral-300 */
+	}
+</style>

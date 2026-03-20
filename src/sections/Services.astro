@@ -1,0 +1,77 @@
+---
+import ArrowRight from 'astro-heroicons/outline/ArrowRight.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+
+const services = [
+	{
+		title: 'Webdesign tervezés',
+		description:
+			'Quisque sit amet laoreet ante. Nulla porttitor nisl a vestibulum mollis. Sed malesuada, lacus vitae lobortis convallis.',
+		icon: '/webdesign.svg',
+	},
+	{
+		title: 'Weboldal fejlesztés',
+		description:
+			'Quisque sit amet laoreet ante. Nulla porttitor nisl a vestibulum mollis. Sed malesuada, lacus vitae lobortis convallis.',
+		icon: '/webdev.svg',
+	},
+	{
+		title: 'Állandó partnerség',
+		description:
+			'Quisque sit amet laoreet ante. Nulla porttitor nisl a vestibulum mollis. Sed malesuada, lacus vitae lobortis convallis.',
+		icon: '/partnership.svg',
+	},
+];
+---
+
+<section id="szolgaltatasok" class="bg-[#0b1e2d] py-16 sm:py-20 lg:py-24" aria-labelledby="szolgaltatasok-cim">
+	<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+		<SectionTitle
+			label="Szolgáltatásaink"
+			title="Miben tudunk segíteni?"
+			description="Quisque sit amet laoreet ante. Nulla porttitor nisl a vestibulum mollis. Sed malesuada, lacus vitae lobortis convallis."
+			dark
+		/>
+
+		<!-- Szolgáltatás kártyák -->
+		<div class="mt-12 sm:mt-16 flex justify-between sm:grid-cols-3 gap-8 sm:gap-4 lg:gap-6">
+			{services.map((service) => (
+				<div class="flex flex-col items-start text-left max-w-[400px]">
+					<div class="w-full">
+						<img src={service.icon} alt={service.title} class="w-full h-auto" />
+					</div>
+					<h3 class="mt-6 text-lg sm:text-xl font-bold text-white">{service.title}</h3>
+					<p class="mt-2 text-sm text-neutral-400 leading-relaxed">{service.description}</p>
+				</div>
+			))}
+		</div>
+
+		<!-- Összekötő nyilak -->
+		<div class="hidden sm:flex justify-center mt-4 mb-2">
+			<img src="/arrows.svg" alt="" aria-hidden="true" class="max-w-[1100px] w-full h-auto -mt-15 -mb-12" />
+		</div>
+
+		<!-- CTA -->
+		<div class="mt-6 flex flex-col items-center text-center">
+			<p class="text-lg sm:text-xl text-white font-medium leading-snug max-w-md">
+				A legtöbb weboldallal kapcsolatos feladatban tudunk segíteni. Mesélj a projektedről!
+			</p>
+			<a
+				href="#kapcsolat"
+				class="mt-6 inline-flex items-center gap-2 rounded-lg bg-teal-400 text-[#0b1e2d] text-base font-medium px-9 py-3 hover:bg-teal-300 transition-colors no-underline"
+			>
+				Egyeztessünk időpontot
+				<ArrowRight class="w-4 h-4" />
+			</a>
+		</div>
+
+		<!-- Logók -->
+		<div class="mt-12 sm:mt-14 flex items-center justify-center gap-6 sm:gap-8">
+			<img src="/wp.png" alt="WordPress" class="h-6 sm:h-10" />
+			<img src="/woo.png" alt="WooCommerce" class="h-4 sm:h-6" />
+			<img src="/react.svg" alt="React" class="h-6 sm:h-10" />
+		</div>
+
+	</div>
+</section>

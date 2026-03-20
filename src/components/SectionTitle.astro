@@ -1,0 +1,25 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  description?: string;
+  dark?: boolean;
+  class?: string;
+}
+
+const { label, title, description, dark = false, class: className } = Astro.props;
+---
+
+<div class:list={["max-w-2xl", className]}>
+  <p class:list={["text-sm font-medium uppercase tracking-wider", dark ? "text-teal-400" : "text-teal-600"]}>
+    {label}
+  </p>
+  <h2 class:list={["mt-2 text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight", dark ? "text-white" : "text-neutral-900"]}>
+    {title}
+  </h2>
+  {description && (
+    <p class:list={["mt-4 text-base leading-relaxed", dark ? "text-neutral-400" : "text-neutral-600"]}>
+      {description}
+    </p>
+  )}
+</div>
